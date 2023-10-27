@@ -1,0 +1,113 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+type UnidadeMedida {
+  id: ID!
+}
+
+type Saida {
+  id: ID!
+}
+
+type Estoque {
+  id: ID!
+}
+
+type Entrada {
+  id: ID!
+}
+
+type Alimento {
+  id: ID!
+  nome: String!
+  unidadeMedida: UnidadeMedida!
+  entradas: [Entrada!]!
+}
+
+type Query {
+  unidadeMedida(id: Int!): UnidadeMedida!
+  allFoods: [Alimento!]!
+  alimento(id: Int!): Alimento!
+  entrada(id: Int!): Entrada!
+  saida(id: Int!): Saida!
+  estoque(id: Int!): Estoque!
+}
+
+type Mutation {
+  createUnidadeMedida(createUnidadeMedidaInput: CreateUnidadeMedidaInput!): UnidadeMedida!
+  updateUnidadeMedida(updateUnidadeMedidaInput: UpdateUnidadeMedidaInput!): UnidadeMedida!
+  removeUnidadeMedida(id: Int!): UnidadeMedida!
+  createFood(createAlimentoInput: CreateAlimentoInput!): Alimento!
+  updateFood(updateAlimentoInput: UpdateAlimentoInput!): Alimento!
+  removeFoodById(id: Int!): Alimento!
+  createEntrada(createEntradaInput: CreateEntradaInput!): Entrada!
+  updateEntrada(updateEntradaInput: UpdateEntradaInput!): Entrada!
+  removeEntrada(id: Int!): Entrada!
+  createSaida(createSaidaInput: CreateSaidaInput!): Saida!
+  updateSaida(updateSaidaInput: UpdateSaidaInput!): Saida!
+  removeSaida(id: Int!): Saida!
+  createEstoque(createEstoqueInput: CreateEstoqueInput!): Estoque!
+  updateEstoque(updateEstoqueInput: UpdateEstoqueInput!): Estoque!
+  removeEstoque(id: Int!): Estoque!
+}
+
+input CreateUnidadeMedidaInput {
+  """Example field (placeholder)"""
+  exampleField: Int!
+}
+
+input UpdateUnidadeMedidaInput {
+  """Example field (placeholder)"""
+  exampleField: Int
+  id: Int!
+}
+
+input CreateAlimentoInput {
+  """Nome do alimento"""
+  nome: String!
+
+  """ID da unidade de medida"""
+  unidadeMedidaId: Int!
+}
+
+input UpdateAlimentoInput {
+  """Nome do alimento"""
+  nome: String
+  unidadeMedidaId: Int!
+  id: ID!
+  name: String!
+}
+
+input CreateEntradaInput {
+  """Example field (placeholder)"""
+  exampleField: Int!
+}
+
+input UpdateEntradaInput {
+  """Example field (placeholder)"""
+  exampleField: Int
+  id: Int!
+}
+
+input CreateSaidaInput {
+  """Example field (placeholder)"""
+  exampleField: Int!
+}
+
+input UpdateSaidaInput {
+  """Example field (placeholder)"""
+  exampleField: Int
+  id: Int!
+}
+
+input CreateEstoqueInput {
+  """Example field (placeholder)"""
+  exampleField: Int!
+}
+
+input UpdateEstoqueInput {
+  """Example field (placeholder)"""
+  exampleField: Int
+  id: Int!
+}
