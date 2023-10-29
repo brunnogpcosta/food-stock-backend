@@ -9,6 +9,7 @@ export class UnidadeMedida {
   @Field(() => ID)
   id: number;
 
+  @Field()
   @Column({ type: 'varchar', length: 255 })
   nome: string;
 

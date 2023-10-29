@@ -33,7 +33,7 @@ export class AlimentoService {
   }
 
   async findOne(id: any): Promise<Alimento> {
-    const alimento = await this.alimentoRepository.findOne(id);
+    const alimento = await this.alimentoRepository.findOneBy(id);
     if (!alimento) {
       throw new NotFoundException(`Alimento with ID #${id} not found`);
     }

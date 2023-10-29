@@ -33,11 +33,19 @@ export class EntradaService {
   }
 
   async findOne(id: any) {
-    const entrada = await this.entradaRepository.findOne(id);
+    const entrada = await this.entradaRepository.findOneBy(id);
     if (!entrada) {
       throw new NotFoundException(`Entrada with ID #${id} not found`);
     }
     return entrada;
+  }
+
+  async findByEstoqueId(estoqueId: number): Promise<Entrada[]> {
+    const estoques = await this.entradaRepository.find({
+      where: { estoque: { id: estoqueId } },
+    });
+    console.log('estoques: ', estoques);
+    return estoques;
   }
 
   async update(

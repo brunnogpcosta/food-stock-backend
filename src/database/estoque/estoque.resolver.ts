@@ -9,20 +9,21 @@ export class EstoqueResolver {
   constructor(private readonly estoqueService: EstoqueService) {}
 
   @Mutation(() => Estoque)
-  createEstoque(
+  async createEstoque(
     @Args('createEstoqueInput') createEstoqueInput: CreateEstoqueInput,
   ) {
-    return this.estoqueService.create(createEstoqueInput);
+    const estoque = this.estoqueService.create(createEstoqueInput);
+    return estoque;
   }
 
-  @Query(() => [Estoque], { name: 'estoque' })
-  findAll() {
+  @Query(() => [Estoque])
+  allStocks() {
     return this.estoqueService.findAll();
   }
 
   @Query(() => Estoque, { name: 'estoque' })
-  findOne(@Args('id', { type: () => Int }) id: number) {
-    return this.estoqueService.findOne(id);
+  async findOne(@Args('id', { type: () => Int }) id: number) {
+    return await this.estoqueService.findOne(id);
   }
 
   @Mutation(() => Estoque)

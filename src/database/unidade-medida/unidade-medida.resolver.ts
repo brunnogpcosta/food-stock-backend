@@ -16,8 +16,8 @@ export class UnidadeMedidaResolver {
     return this.unidadeMedidaService.create(createUnidadeMedidaInput);
   }
 
-  @Query(() => [UnidadeMedida], { name: 'unidadeMedida' })
-  findAll() {
+  @Query(() => [UnidadeMedida])
+  allUnities() {
     return this.unidadeMedidaService.findAll();
   }
 

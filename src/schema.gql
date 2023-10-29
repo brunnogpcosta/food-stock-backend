@@ -4,19 +4,38 @@
 
 type UnidadeMedida {
   id: ID!
-}
-
-type Saida {
-  id: ID!
+  nome: String!
+  alimentos: [Alimento!]!
 }
 
 type Estoque {
   id: ID!
+  nome: String!
+  createdAt: String!
+  entradas: [Entrada!]
+  saidas: [Saida!]
+}
+
+type Saida {
+  id: ID!
+  entrada: Entrada!
+  estoque: Estoque!
+  quantidade: Float!
 }
 
 type Entrada {
   id: ID!
+  alimento: Alimento!
+  estoque: Estoque!
+  validade: DateTime!
+  quantidade: Float!
+  saidas: [Saida!]
 }
+
+"""
+A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date-time format.
+"""
+scalar DateTime
 
 type Alimento {
   id: ID!
@@ -26,11 +45,14 @@ type Alimento {
 }
 
 type Query {
+  allUnities: [UnidadeMedida!]!
   unidadeMedida(id: Int!): UnidadeMedida!
   allFoods: [Alimento!]!
   alimento(id: Int!): Alimento!
   entrada(id: Int!): Entrada!
+  entradas(estoqueId: Int!): [Entrada!]!
   saida(id: Int!): Saida!
+  allStocks: [Estoque!]!
   estoque(id: Int!): Estoque!
 }
 
@@ -53,13 +75,13 @@ type Mutation {
 }
 
 input CreateUnidadeMedidaInput {
-  """Example field (placeholder)"""
-  exampleField: Int!
+  """Nome da medida"""
+  nome: String!
 }
 
 input UpdateUnidadeMedidaInput {
-  """Example field (placeholder)"""
-  exampleField: Int
+  """Nome da medida"""
+  nome: String
   id: Int!
 }
 
@@ -68,7 +90,7 @@ input CreateAlimentoInput {
   nome: String!
 
   """ID da unidade de medida"""
-  unidadeMedidaId: Int!
+  unidadeMedidaId: ID!
 }
 
 input UpdateAlimentoInput {
@@ -80,34 +102,70 @@ input UpdateAlimentoInput {
 }
 
 input CreateEntradaInput {
-  """Example field (placeholder)"""
-  exampleField: Int!
+  """id da entrada"""
+  alimento_id: Int!
+
+  """estoque da entrada"""
+  estoque_id: Int!
+
+  """Data de validade"""
+  validade: String!
+
+  """quantidade"""
+  quantidade: Int!
 }
 
 input UpdateEntradaInput {
-  """Example field (placeholder)"""
-  exampleField: Int
+  """id da entrada"""
+  alimento_id: Int
+
+  """estoque da entrada"""
+  estoque_id: Int
+
+  """Data de validade"""
+  validade: String
+
+  """quantidade"""
+  quantidade: Int
   id: Int!
 }
 
 input CreateSaidaInput {
-  """Example field (placeholder)"""
-  exampleField: Int!
+  """id da entrada"""
+  entrada_id: Int!
+
+  """estoque da entrada"""
+  estoque_id: Int!
+
+  """quantidade"""
+  quantidade: Int!
 }
 
 input UpdateSaidaInput {
-  """Example field (placeholder)"""
-  exampleField: Int
+  """id da entrada"""
+  entrada_id: Int
+
+  """estoque da entrada"""
+  estoque_id: Int
+
+  """quantidade"""
+  quantidade: Int
   id: Int!
 }
 
 input CreateEstoqueInput {
-  """Example field (placeholder)"""
-  exampleField: Int!
+  """Nome do estoque"""
+  nome: String!
+
+  """data de criação"""
+  createdAt: String!
 }
 
 input UpdateEstoqueInput {
-  """Example field (placeholder)"""
-  exampleField: Int
-  id: Int!
+  """Nome do estoque"""
+  nome: String!
+
+  """data de criação"""
+  createdAt: String
+  id: ID!
 }

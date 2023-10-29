@@ -17,18 +17,22 @@ export class Entrada {
   @Field(() => ID)
   id: number;
 
+  @Field(() => Alimento)
   @ManyToOne(() => Alimento, (alimento) => alimento.entradas)
   alimento: Alimento;
 
   @ManyToOne(() => Estoque, (estoque) => estoque.entradas)
+  @Field(() => Estoque)
   estoque: Estoque;
 
+  @Field()
   @Column({ type: 'date' })
   validade: Date;
 
+  @Field()
   @Column({ type: 'numeric' })
   quantidade: number;
 
   @OneToMany(() => Saida, (saida) => saida.entrada)
-  saidas: Saida[];
+  saidas?: Saida[];
 }

@@ -33,7 +33,7 @@ export class EstoqueService {
   }
 
   async findOne(id: any) {
-    const estoque = await this.estoqueRepository.findOne(id);
+    const estoque = await this.estoqueRepository.findOneBy(id);
     if (!estoque) {
       throw new NotFoundException(`estoque with ID #${id} not found`);
     }

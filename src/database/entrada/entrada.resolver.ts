@@ -25,6 +25,11 @@ export class EntradaResolver {
     return this.entradaService.findOne(id);
   }
 
+  @Query(() => [Entrada], { name: 'entradas' })
+  findEntradas(@Args('estoqueId', { type: () => Int }) estoqueId: number) {
+    return this.entradaService.findByEstoqueId(estoqueId);
+  }
+
   @Mutation(() => Entrada)
   updateEntrada(
     @Args('updateEntradaInput') updateEntradaInput: UpdateEntradaInput,

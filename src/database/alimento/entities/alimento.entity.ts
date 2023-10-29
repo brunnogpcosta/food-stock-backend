@@ -20,7 +20,6 @@ export class Alimento {
   @Column({ type: 'varchar', length: 255 })
   nome: string;
 
-  @Field()
   @ManyToOne(() => UnidadeMedida, (unidadeMedida) => unidadeMedida.alimentos)
   unidadeMedida: UnidadeMedida;
 

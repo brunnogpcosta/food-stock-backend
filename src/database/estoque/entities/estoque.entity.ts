@@ -10,12 +10,17 @@ export class Estoque {
   @Field(() => ID)
   id: number;
 
+  @Field()
   @Column({ type: 'varchar', length: 255 })
   nome: string;
 
   @OneToMany(() => Entrada, (entrada) => entrada.estoque)
-  entradas: Entrada[];
+  entradas?: Entrada[];
 
   @OneToMany(() => Saida, (saida) => saida.estoque)
-  saidas: Saida[];
+  saidas?: Saida[];
+
+  @Field()
+  @Column({ type: 'timestamp', default: () => 'CURRENT_TIMESTAMP' })
+  createdAt: string;
 }

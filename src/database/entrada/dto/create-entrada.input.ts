@@ -8,8 +8,8 @@ export class CreateEntradaInput {
   @Field(() => Int, { description: 'estoque da entrada' })
   estoque_id: number;
 
-  @Field(() => Int, { description: 'validade' })
-  validade: number;
+  @Field({ description: 'Data de validade' })
+  validade: string;
 
   @Field(() => Int, { description: 'quantidade' })
   quantidade: number;
